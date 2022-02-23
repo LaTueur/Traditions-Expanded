@@ -8,14 +8,17 @@ on_prestige_level_loss = {
         trex_levy_size_per_prestige_level
     }
 }
-on_tradition_added = {
+on_tradition_added_ruler = {
     on_actions = {
         trex_levy_size_per_prestige_level
+        trex_possible_change_to_same_faith_succession
+        trex_possible_change_to_ultimo
     }
 }
-on_tradition_removed = {
+on_tradition_removed_ruler = {
     on_actions = {
         trex_levy_size_per_prestige_level
+        trex_possible_change_from_ultimo
     }
 }
 on_character_culture_change = {
@@ -88,5 +91,33 @@ trex_deviant_trait_more_common_assign = {
         else = {
             give_deviant_secret_or_trait_effect = yes
         }
+    }
+}
+trex_possible_change_to_same_faith_succession = {
+    trigger = {
+        is_ruler = yes
+        should_have_same_faith_succession_trigger = yes
+        NOT = {
+            has_realm_law = same_faith_only_law
+        }
+    }
+    effect = {
+        add_realm_law_skip_effects = same_faith_only_law
+    }
+}
+trex_possible_change_to_ultimo = {
+    trigger = {
+        scope:tradition = tradition_junior_right
+    }
+    effect = {
+        trex_switch_to_ultimo_effect = yes
+    }
+}
+trex_possible_change_from_ultimo = {
+    trigger = {
+        scope:tradition = tradition_junior_right
+    }
+    effect = {
+        trex_switch_from_ultimo_effect = yes
     }
 }

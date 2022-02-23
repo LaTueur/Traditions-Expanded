@@ -1,0 +1,45 @@
+on_tradition_added = {
+    effect = {
+        save_scope_as = changing_culture
+        set_variable = { name = added_tradition value = scope:tradition }
+		every_player = {
+			limit = {
+				culture = root
+			}
+			trigger_event = {
+				id = culture_notification.0011
+				days = 0
+			}
+		}
+        every_ruler = {
+			limit = {
+				culture = root
+			}
+			trigger_event = { on_action = on_tradition_added_ruler }
+        }
+    }
+}
+on_tradition_removed = {
+    effect = {
+        save_scope_as = changing_culture
+        set_variable = { name = removed_tradition value = scope:tradition }
+		every_player = {
+			limit = {
+				culture = root
+			}
+			trigger_event = {
+				id = culture_notification.0010
+				days = 0
+			}
+		}
+        every_ruler = {
+			limit = {
+				culture = root
+			}
+			trigger_event = { on_action = on_tradition_removed_ruler }
+        }
+    }
+    on_actions = {
+        trex_levy_size_per_prestige_level
+    }
+}

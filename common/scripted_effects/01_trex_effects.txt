@@ -13,13 +13,35 @@ trex_assign_levy_size_per_prestige_level_effect = {
         limit = {
             trex_uses_levy_size_per_prestige_level_trigger = yes
         }
-        switch = {
-            trigger = prestige_level
-            1 = { add_character_modifier = { modifier = trex_levy_size_per_prestige_level_1 } }
-            2 = { add_character_modifier = { modifier = trex_levy_size_per_prestige_level_2 } }
-            3 = { add_character_modifier = { modifier = trex_levy_size_per_prestige_level_3 } }
-            4 = { add_character_modifier = { modifier = trex_levy_size_per_prestige_level_4 } }
-            5 = { add_character_modifier = { modifier = trex_levy_size_per_prestige_level_5 } }
+        if = {
+            limit = {
+                prestige_level >= 5 
+            }
+            add_character_modifier = { modifier = trex_levy_size_per_prestige_level_5 }
+        }
+        else_if = {
+            limit = {
+                prestige_level >= 4 
+            }
+            add_character_modifier = { modifier = trex_levy_size_per_prestige_level_4 }
+        }
+        else_if = {
+            limit = {
+                prestige_level >= 3 
+            }
+            add_character_modifier = { modifier = trex_levy_size_per_prestige_level_3 }
+        }
+        else_if = {
+            limit = {
+                prestige_level >= 2 
+            }
+            add_character_modifier = { modifier = trex_levy_size_per_prestige_level_2 }
+        }
+        else_if = {
+            limit = {
+                prestige_level >= 1 
+            }
+            add_character_modifier = { modifier = trex_levy_size_per_prestige_level_1 }
         }
     }
 }
@@ -29,5 +51,21 @@ trex_reclusive_prestige_loss_effect = {
             NOT = { culture = { has_cultural_parameter = reclusive_decision_no_prestige_cost } }
         }
         add_prestige = medium_prestige_loss
+    }
+}
+trex_switch_to_ultimo_effect = {
+    switch = {
+        trigger = has_realm_law
+        confederate_partition_succession_law = { add_realm_law_skip_effects = confederate_ultimopartition_succession_law }
+        partition_succession_law = { add_realm_law_skip_effects = ultimopartition_succession_law }
+        high_partition_succession_law = { add_realm_law_skip_effects = high_ultimopartition_succession_law }
+    }
+}
+trex_switch_from_ultimo_effect = {
+    switch = {
+        trigger = has_realm_law
+        confederate_ultimopartition_succession_law = { add_realm_law_skip_effects = confederate_partition_succession_law }
+        ultimopartition_succession_law = { add_realm_law_skip_effects = partition_succession_law }
+        high_ultimopartition_succession_law = { add_realm_law_skip_effects = high_partition_succession_law }
     }
 }
