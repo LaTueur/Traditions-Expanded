@@ -59,3 +59,24 @@ trex_possible_ruler_trigger = {
         faith_dominant_gender_female_or_equal = yes
     }
 }
+trex_no_tradition_blocks_cavarly_trigger = {
+    custom_tooltip = {
+        text = cannot_have_tradition_on_foot
+        NOT = { any_in_list = { list = traits this = flag:tradition_on_foot } }
+    }
+}
+trex_culture_has_cavarly_tradition_trigger = {
+    OR = {
+        culture_has_light_cavalry_maa = yes
+        culture_has_heavy_cavalry_maa = yes
+        culture_has_archer_cavalry_maa = yes
+        has_innovation = innovation_war_camels
+        has_innovation = innovation_elephantry
+        any_in_list = { list = traits this = flag:tradition_horse_breeder }
+        any_in_list = { list = traits this = flag:tradition_lords_of_the_elephant }
+        any_in_list = { list = traits this = flag:tradition_saharan_nomads }
+        any_in_list = { list = traits this = flag:tradition_hit_and_run }
+        any_in_list = { list = traits this = flag:tradition_chivalry }
+    }
+}
+

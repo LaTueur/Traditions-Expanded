@@ -108,6 +108,9 @@ tradition_chivalry = {
 			has_cultural_pillar = heritage_west_germanic
 		}
 	}
+	can_pick = {
+		trex_no_tradition_blocks_cavalry_trigger = yes
+	}
 	
 	parameters = {
 		can_use_sparring_duel = yes
@@ -1885,7 +1888,13 @@ tradition_equitable = {
 		1 = mediterranean
 		4 = conversation.dds
 	}
-	
+	can_pick = {
+		custom_tooltip = {
+			text = cannot_have_tradition_void_for_vagueness
+			NOT = { any_in_list = { list = traits this = flag:tradition_void_for_vagueness } }
+		}
+	}
+
 	parameters = {
 		just_trait_more_common = yes
 		honest_trait_more_common = yes
@@ -1968,6 +1977,12 @@ tradition_charitable = {
 		0 = diplo
 		1 = mena
 		4 = ceremony.dds
+	}
+	can_pick = {
+		custom_tooltip = {
+			text = tradition_dog_eat_dog
+			NOT = { any_in_list = { list = traits this = flag:tradition_dog_eat_dog } }
+		}
 	}
 	
 	parameters = {

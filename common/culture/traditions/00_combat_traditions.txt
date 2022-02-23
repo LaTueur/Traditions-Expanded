@@ -1576,6 +1576,12 @@ tradition_battlefield_looters = {
 		1 = mediterranean
 		4 = swords.dds
 	}
+	can_pick = {
+		custom_tooltip = {
+			text = cannot_have_tradition_war_glory
+			NOT = { any_in_list = { list = traits this = flag:tradition_war_glory } }
+		}
+	}
 	
 	parameters = {
 		gain_gold_from_battles = yes
@@ -1584,7 +1590,6 @@ tradition_battlefield_looters = {
 	character_modifier = {
 		max_loot_mult = 0.5
 	}
-	
 	cost = {
 		prestige = {
 			add = {
@@ -1683,6 +1688,7 @@ tradition_hit_and_run = {
 			}
 			NOT = { has_cultural_tradition = tradition_hussar } #To prevent stacking after hybridization
 		}
+		trex_no_tradition_blocks_cavalry_trigger = yes
 	}
 
 	# Iberian: Concurso Tactics
@@ -2077,6 +2083,9 @@ tradition_horse_breeder = {
 			culture_has_heavy_cavalry_maa = yes
 			culture_has_archer_cavalry_maa = yes
 		}
+	}
+	can_pick = {
+		trex_no_tradition_blocks_cavalry_trigger = yes
 	}
 	
 	character_modifier = {

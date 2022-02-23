@@ -503,6 +503,7 @@ tradition_hussar = { #Konni Raids
 			}
 			NOT = { has_cultural_tradition = tradition_hit_and_run } #To prevent stacking after hybridization
 		}
+		trex_no_tradition_blocks_cavalry_trigger = yes
 	}
 	
 	parameters = {
@@ -1021,6 +1022,7 @@ tradition_burman_royal_army = {
 	}
 	can_pick = {
 		has_cultural_pillar = heritage_burman
+		trex_no_tradition_blocks_cavalry_trigger = yes
 	}
 	
 	parameters = {

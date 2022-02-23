@@ -256,8 +256,6 @@ tradition_respected_solitude = {
 		1 = mediterranean
 		4 = conversation.dds
 	}
-    is_shown = {
-    }
 	
 	parameters = {
         shy_trait_more_common = yes
@@ -326,6 +324,12 @@ tradition_dog_eat_dog = {
 		0 = learning
 		1 = mediterranean
 		4 = conversation.dds
+	}
+	can_pick = {
+		custom_tooltip = {
+			text = cannot_have_tradition_charitable
+			NOT = { any_in_list = { list = traits this = flag:tradition_charitable } }
+		}
 	}
 	
 	parameters = {

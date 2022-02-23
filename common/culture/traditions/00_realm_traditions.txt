@@ -114,6 +114,16 @@ tradition_legalistic = {
 			}
 		}
 	}
+	can_pick = {
+		custom_tooltip = {
+			text = cannot_have_tradition_void_for_vagueness
+			NOT = { any_in_list = { list = traits this = flag:tradition_void_for_vagueness } }
+		}
+		custom_tooltip = {
+			text = cannot_have_tradition_bare_contracts
+			NOT = { any_in_list = { list = traits this = flag:tradition_bare_contracts } }
+		}
+	}
 	
 	parameters = {
 		cheaper_to_change_laws = yes
@@ -1015,6 +1025,7 @@ tradition_roman_legacy = {
 		has_cultural_pillar = heritage_byzantine
 	}
 	can_pick = {
+		trex_no_tradition_blocks_cavalry_trigger = yes
 	}
 	
 	parameters = {
@@ -1281,6 +1292,13 @@ tradition_wedding_ceremonies = {
 		0 = diplo
 		1 = indian
 		4 = greeting.dds
+	}
+
+	can_pick = {
+		custom_tooltip = {
+			text = cannot_have_tradition_bare_contracts
+			NOT = { any_in_list = { list = traits this = flag:tradition_bare_contracts } }
+		}
 	}
 	
 	parameters = {

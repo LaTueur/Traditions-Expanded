@@ -151,6 +151,10 @@ tradition_void_for_vagueness = {
 			text = cannot_have_tradition_legalistic
 			NOT = { any_in_list = { list = traits this = flag:tradition_legalistic } }
 		}
+		custom_tooltip = {
+			text = cannot_have_tradition_equitable
+			NOT = { any_in_list = { list = traits this = flag:tradition_equitable } }
+		}
     }
 	
 	parameters = {

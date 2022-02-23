@@ -109,6 +109,7 @@ tradition_lords_of_the_elephant = {
 	}
 	can_pick = {
 		has_innovation = innovation_elephantry
+		trex_no_tradition_blocks_cavalry_trigger = yes
 	}
 	
 	parameters = {
@@ -511,6 +512,7 @@ tradition_horse_lords = {
 				}
 			}
 		}
+		trex_no_tradition_blocks_cavalry_trigger = yes
 	}
 	
 	parameters = {
@@ -589,6 +591,7 @@ tradition_saharan_nomads = {
 				geographical_region = world_africa_sahara
 			}
 		}
+		trex_no_tradition_blocks_cavalry_trigger = yes
 	}
 	character_modifier = {
 		light_cavalry_maintenance_mult = -0.25
@@ -872,6 +875,7 @@ tradition_desert_nomads = {
 				}
 			}
 		}
+		trex_no_tradition_blocks_cavalry_trigger = yes
 	}
 	
 	parameters = {

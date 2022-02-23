@@ -152,13 +152,7 @@ tradition_on_foot = {
 		4 = knight.dds
 	}
 	is_shown = {
-		NOR = {
-			culture_has_light_cavalry_maa = yes
-			culture_has_heavy_cavalry_maa = yes
-			culture_has_archer_cavalry_maa = yes
-			has_innovation = innovation_war_camels
-			has_innovation = innovation_elephantry
-		}
+		trex_culture_has_cavalry_tradition_trigger = no
 	}
 	
 	parameters = {
@@ -203,7 +197,7 @@ tradition_on_foot = {
 			if = {
 				limit = {
 					scope:character = {
-						OR = { # Culture Head need to have no regiment of cavarly
+						OR = { # Culture Head need to have no regiment of cavalry
 							number_maa_regiments_of_base_type = {
 								type = light_cavalry
 								value >= 1
