@@ -1,0 +1,403 @@
+﻿tradition_war_glory = {
+	category = societal
+
+	layers = {
+		0 = martial
+		1 = western
+		4 = laurelsword.dds
+	}
+
+    can_pick = {
+		culture_not_pacifistic_trigger = yes
+		custom_tooltip = {
+			text = cannot_have_tradition_battlefield_looters
+			NOT = { any_in_list = { list = traits this = flag:tradition_battlefield_looters } }
+		}
+    }
+	
+	parameters = {
+        more_prestige_from_battles = yes
+        levy_size_per_prestige_level = yes
+		craven_trait_costs_prestige = yes
+		cheaper_cbs = yes
+	}
+    character_modifier = {
+        monthly_prestige_gain_mult = -0.3
+		ai_war_chance = 0.5
+		ai_war_cooldown = -0.25
+		ai_amenity_target_baseline = -0.1
+    }
+	
+	cost = {
+		prestige = {
+			add = {
+				value = tradition_base_cost
+				desc = BASE
+				format = "BASE_VALUE_FORMAT"
+			}
+			# Ethos requirement.
+			if = {
+				limit = {
+					NOR = {
+						any_in_list = { list = traits this = flag:ethos_bellicose }
+						any_in_list = { list = traits this = flag:ethos_stoic }
+					}
+				}
+				add = {
+					value = tradition_incompatible_ethos_penalty
+					desc = not_bellicose_or_stoic_desc
+				}
+			}
+			# 
+			if = {
+				limit = {
+					trigger_if = {
+						limit = {
+							scope:character = {
+								is_ai = no
+							}
+						}
+						NOT = {
+							any_same_culture_count_or_above = {
+								save_temporary_scope_as = checked_ruler
+								prestige_level >= 4
+								has_trait = martial_education
+							}
+						}
+					}
+					trigger_else = {
+						always = no
+					}
+				}
+				add = {
+					value = tradition_unfulfilled_criteria_penalty
+					desc = rulers_with_high_prestige_level_martial_education
+				}
+			}
+			
+			multiply = tradition_replacement_cost_if_relevant
+		}
+	}
+	
+	ai_will_do = {
+		value = 100
+		if = {
+			limit = {
+				any_in_list = { list = traits this = flag:ethos_courtly }
+			}
+			multiply = 0
+		}
+	}
+}
+tradition_no_taboos = {
+	category = societal
+
+	layers = {
+		0 = diplo
+		1 = indian
+		4 = speech.dds
+	}
+    is_shown = {
+        scope:character.faith = {
+            NOR = {
+                has_doctrine = doctrine_consanguinity_restricted
+                has_doctrine = doctrine_deviancy_crime
+            }
+        }
+    }
+	
+	parameters = {
+        deviant_trait_more_common = yes
+        lustful_trait_more_common = yes
+        always_accepts_incest = yes
+	}
+    character_modifier = {
+        seduce_scheme_resistance_mult = -0.5
+    }
+	
+	cost = {
+		prestige = {
+			add = {
+				value = tradition_base_cost
+				desc = BASE
+				format = "BASE_VALUE_FORMAT"
+			}
+			# Ethos requirement.
+			if = {
+				limit = {
+					NOR = {
+						any_in_list = { list = traits this = flag:ethos_communal }
+						any_in_list = { list = traits this = flag:ethos_egalitarian }
+					}
+				}
+				add = {
+					value = tradition_incompatible_ethos_penalty
+					desc = not_communal_or_egalitarian
+				}
+			}
+			if = {
+				limit = {
+                    scope:character.faith = {
+                        NOR = {
+                            has_doctrine = doctrine_deviancy_accepted
+                            has_doctrine = doctrine_consanguinity_unrestricted
+                        }
+                    }
+				}
+				add = {
+					value = tradition_unfulfilled_criteria_penalty
+					desc = cheaper_tradition_from_faith
+				}
+			}
+			
+			multiply = tradition_replacement_cost_if_relevant
+		}
+	}
+	
+	ai_will_do = {
+		value = 100
+		if = {
+			limit = {
+				NOR = {
+                    has_trait = deviant
+                    is_deviant_trigger = yes
+                }
+			}
+			multiply = 0
+		}
+		if = {
+			limit = {
+				is_deviant_trigger = no
+			}
+			multiply = 0.1
+		}
+	}
+}
+tradition_open_to_criticism = {
+	category = societal
+
+	layers = {
+		0 = learning
+		1 = mediterranean
+		4 = conversation.dds
+	}
+    is_shown = {
+    }
+	
+	parameters = {
+        cynical_trait_more_common = yes
+		honest_trait_more_common = yes
+	}
+    character_modifier = {
+		sway_scheme_power_mult = -0.3
+		different_culture_opinion = -10
+		monthly_lifestyle_xp_gain_mult = 0.05
+    }
+	
+	cost = {
+		prestige = {
+			add = {
+				value = tradition_base_cost
+				desc = BASE
+				format = "BASE_VALUE_FORMAT"
+			}
+			# Ethos requirement.
+			if = {
+				limit = {
+					NOR = {
+						any_in_list = { list = traits this = flag:ethos_bureaucratic }
+						any_in_list = { list = traits this = flag:ethos_communal }
+						any_in_list = { list = traits this = flag:ethos_stoic }
+					}
+				}
+				add = {
+					value = tradition_incompatible_ethos_penalty
+					desc = not_communal_bureaucratic_or_stoic_desc
+				}
+			}
+			if = {
+				limit = {
+					trigger_if = {
+						limit = {
+							scope:character = {
+								is_ai = no
+							}
+						}
+						NOT = {
+							any_same_culture_count_or_above = {
+								count >= 5
+								has_trait = honest
+							}
+						}
+					}
+					trigger_else = {
+						always = no
+					}
+				}
+				add = {
+					value = tradition_unfulfilled_criteria_penalty
+					desc = rulers_with_honest_desc
+				}
+			}
+			
+			multiply = tradition_replacement_cost_if_relevant
+		}
+	}
+	
+	ai_will_do = {
+		value = 50
+	}
+}
+tradition_respected_solitude = {
+	category = societal
+
+	layers = {
+		0 = learning
+		1 = mediterranean
+		4 = conversation.dds
+	}
+    is_shown = {
+    }
+	
+	parameters = {
+        shy_trait_more_common = yes
+		journaller_trait_lower_requirement = yes
+		reclusive_decision_no_prestige_cost = yes
+	}
+	
+	cost = {
+		prestige = {
+			add = {
+				value = tradition_base_cost
+				desc = BASE
+				format = "BASE_VALUE_FORMAT"
+			}
+			# Ethos requirement.
+			if = {
+				limit = {
+					NOR = {
+						any_in_list = { list = traits this = flag:ethos_bureaucratic }
+						any_in_list = { list = traits this = flag:ethos_stoic }
+						any_in_list = { list = traits this = flag:ethos_spiritual }
+					}
+				}
+				add = {
+					value = tradition_incompatible_ethos_penalty
+					desc = not_spiritual_bureaucratic_or_stoic_desc
+				}
+			}
+			if = {
+				limit = {
+					trigger_if = {
+						limit = {
+							scope:character = {
+								is_ai = no
+							}
+						}
+						NOT = {
+							any_same_culture_count_or_above = {
+								count >= 5
+								has_trait = shy
+							}
+						}
+					}
+					trigger_else = {
+						always = no
+					}
+				}
+				add = {
+					value = tradition_unfulfilled_criteria_penalty
+					desc = rulers_with_shy_desc
+				}
+			}
+			
+			multiply = tradition_replacement_cost_if_relevant
+		}
+	}
+	
+	ai_will_do = {
+		value = 50
+	}
+}
+tradition_dog_eat_dog = {
+	category = societal
+
+	layers = {
+		0 = learning
+		1 = mediterranean
+		4 = conversation.dds
+	}
+	
+	parameters = {
+        ambitious_trait_more_common = yes
+        callous_trait_more_common = yes
+	}
+	character_modifier = {
+		opinion_of_different_culture = -5
+		opinion_of_same_culture = -10
+		hostile_scheme_power_mult = 0.2
+		hostile_scheme_resistance_mult = 0.2
+		ai_greed = 10
+		ai_compassion = -10
+	}
+	county_modifier = {
+		county_opinion_add = -5
+	}
+	
+	cost = {
+		prestige = {
+			add = {
+				value = tradition_base_cost
+				desc = BASE
+				format = "BASE_VALUE_FORMAT"
+			}
+			# Ethos requirement.
+			if = {
+				limit = {
+					NOR = {
+						any_in_list = { list = traits this = flag:ethos_bureaucratic }
+						any_in_list = { list = traits this = flag:ethos_stoic }
+						any_in_list = { list = traits this = flag:ethos_spiritual }
+					}
+				}
+				add = {
+					value = tradition_incompatible_ethos_penalty
+					desc = not_spiritual_bureaucratic_or_stoic_desc
+				}
+			}
+			if = {
+				limit = {
+					trigger_if = {
+						limit = {
+							scope:character = {
+								is_ai = no
+							}
+						}
+						NOT = {
+							any_same_culture_count_or_above = {
+								count >= 5
+								has_trait = ambitious
+							}
+						}
+					}
+					trigger_else = {
+						always = no
+					}
+				}
+				add = {
+					value = tradition_unfulfilled_criteria_penalty
+					desc = rulers_with_ambitious_desc
+				}
+			}
+			
+			multiply = tradition_replacement_cost_if_relevant
+		}
+	}
+	
+	ai_will_do = {
+		value = 50
+	}
+}
+
+
+

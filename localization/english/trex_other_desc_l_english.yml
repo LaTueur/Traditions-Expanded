@@ -1,0 +1,4 @@
+﻿l_english:
+ not_spiritual_courtly_or_egalitarian_desc:0 "The [culture|E] does not have the $ethos_spiritual_name$, $ethos_courtly_name$ or $ethos_egalitarian_name$ [ethos|E]"
+ seduce_scheme_resistance_add:1 "[GetScheme('seduce').GetTypeName] [scheme_resistance|E]"
+ seduce_scheme_resistance_mult:0 "$seduce_scheme_resistance_add$"

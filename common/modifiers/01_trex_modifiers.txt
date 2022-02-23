@@ -1,0 +1,20 @@
+﻿trex_levy_size_per_prestige_level_1 = {
+    icon = prestige_level_1
+    levy_size = 0.02
+}
+trex_levy_size_per_prestige_level_2 = {
+    icon = prestige_level_2
+    levy_size = 0.04
+}
+trex_levy_size_per_prestige_level_3 = {
+    icon = prestige_level_3
+    levy_size = 0.06
+}
+trex_levy_size_per_prestige_level_4 = {
+    icon = prestige_level_4
+    levy_size = 0.08
+}
+trex_levy_size_per_prestige_level_5 = {
+    icon = prestige_level_5
+    levy_size = 0.10
+}

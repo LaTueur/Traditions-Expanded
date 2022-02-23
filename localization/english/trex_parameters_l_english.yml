@@ -1,0 +1,12 @@
+﻿l_english:
+ culture_parameter_better_wound_treatment:0 "[characters|E] of this [culture|E] perform better while treating wounds in the role of #high $court_physician_court_position$#!"
+ culture_parameter_piety_from_all_battles:0 "Gain [piety|E] and [piety_experience|E] from all [battles|E], regardless of [faith_hostility|E]."
+ culture_parameter_more_prestige_from_battles:0 "[prestige|E] and [prestige_experience|E] from [battles|E]: [prestige_i] #P +100%#!"
+ culture_parameter_co_ruler_instead_of_spouse:0 "[prestige|E] and [prestige_experience|E] from [battles|E]: [prestige_i] #N +100%#!"
+ culture_parameter_has_ultimo_laws:0 "Has access to $confederate_ultimopartition_succession_law$, $ultimopartition_succession_law$ and $high_ultimopartition_succession_law$ [succession_laws|E]."
+ culture_parameter_levy_size_per_prestige_level:0 "[soldier_i] #P +2%#! $MOD_LEVY_SIZE$ per [prestige_experience|E]"
+ culture_parameter_always_accepts_incest:0 "[characters|E] of this [culture|E] does not have the [incestuous|E] penalty from [GetScheme('seduce').GetTypeName] [schemes|E] if they are over the age of 19."
+ culture_parameter_deviant_trait_more_common:0 "The [GetTrait('deviant').GetName( GetNullCharacter )] [trait|E] is more common"
+ culture_parameter_lustful_trait_more_common:0 "The [GetTrait('lustful').GetName( GetNullCharacter )] [trait|E] is more common"
+ culture_parameter_cynical_trait_more_common:0 "The [GetTrait('cynical').GetName( GetNullCharacter )] [trait|E] is more common"
+ 

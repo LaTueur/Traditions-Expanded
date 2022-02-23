@@ -1,0 +1,146 @@
+﻿tradition_field_surgery = {
+	category = combat
+
+	layers = {
+		0 = learning
+		1 = western
+		4 = soldiers3.dds
+	}
+	
+	parameters = {
+        better_wound_treatment = yes
+	}
+	character_modifier = {
+		hard_casualty_modifier = -0.15
+		army_maintenance_mult = 0.05
+	}
+	
+	cost = {
+		prestige = {
+			add = {
+				value = tradition_base_cost
+				desc = BASE
+				format = "BASE_VALUE_FORMAT"
+			}
+			# Ethos requirement.
+			if = {
+				limit = {
+					NOR = {
+						any_in_list = { list = traits this = flag:ethos_communal }
+						any_in_list = { list = traits this = flag:ethos_bureaucratic }
+					}
+				}
+				add = {
+					value = tradition_incompatible_ethos_penalty
+					desc = not_bureaucratic_or_communal_desc
+				}
+			}
+			if = {
+				limit = {
+					trigger_if = {
+						limit = {
+							scope:character = {
+								is_ai = no
+							}
+						}
+						NOT = {
+							any_same_culture_count_or_above = {
+								count >= 5
+								has_trait = cautious_leader
+							}
+						}
+					}
+					trigger_else = {
+						always = no
+					}
+				}
+				add = {
+					value = tradition_unfulfilled_criteria_penalty
+					desc = rulers_with_cautious_leader_desc
+				}
+			}
+			
+			multiply = tradition_replacement_cost_if_relevant
+		}
+	}
+	
+	
+	ai_will_do = {
+		value = 100
+	}
+}
+
+tradition_merciful_warriors = {
+	category = combat
+
+	layers = {
+		0 = learning
+		1 = indian
+		4 = knight.dds
+	}
+	
+	parameters = {
+        piety_from_all_battles = yes
+		compassionate_trait_more_common = yes
+	}
+	character_modifier = {
+		enemy_hard_casualty_modifier = -0.1
+		dread_baseline_add = -5
+		ai_compassion = 10
+	}
+	
+	cost = {
+		prestige = {
+			add = {
+				value = tradition_base_cost
+				desc = BASE
+				format = "BASE_VALUE_FORMAT"
+			}
+			# Ethos requirement.
+			if = {
+				limit = {
+					NOR = {
+						any_in_list = { list = traits this = flag:ethos_egalitarian }
+						any_in_list = { list = traits this = flag:ethos_courtly }
+						any_in_list = { list = traits this = flag:ethos_spiritual }
+					}
+				}
+				add = {
+					value = tradition_incompatible_ethos_penalty
+					desc = not_spiritual_courtly_or_egalitarian_desc
+				}
+			}
+			if = {
+				limit = {
+					trigger_if = {
+						limit = {
+							scope:character = {
+								is_ai = no
+							}
+						}
+						NOT = {
+							any_same_culture_count_or_above = {
+								count >= 3
+								has_trait = compassionate
+								has_trait = education_martial
+							}
+						}
+					}
+					trigger_else = {
+						always = no
+					}
+				}
+				add = {
+					value = tradition_unfulfilled_criteria_penalty
+					desc = rulers_with_compassionate_martial_desc
+				}
+			}
+			
+			multiply = tradition_replacement_cost_if_relevant
+		}
+	}
+	
+	ai_will_do = {
+		value = 100
+	}
+}

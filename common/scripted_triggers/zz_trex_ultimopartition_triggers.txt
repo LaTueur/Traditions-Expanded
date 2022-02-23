@@ -1,0 +1,186 @@
+﻿should_start_with_confederate_partition_trigger = {
+    NOR = {
+        historical_succession_access_single_heir_succession_law_trigger = yes
+        historical_succession_access_single_heir_succession_law_youngest_trigger = yes
+        historical_succession_access_single_heir_dynasty_house_trigger = yes
+    }
+    OR = {
+        AND = {
+            OR = {
+                has_government = feudal_government
+                has_government = clan_government
+            }
+            culture = {
+                NOR = {
+                    has_innovation = innovation_hereditary_rule
+                    has_innovation = innovation_heraldry
+                }
+            }
+        }
+        has_government = tribal_government
+    }
+}
+should_start_with_partition_trigger = {
+    NOR = {
+        historical_succession_access_single_heir_succession_law_trigger = yes
+        historical_succession_access_single_heir_succession_law_youngest_trigger = yes
+        historical_succession_access_single_heir_dynasty_house_trigger = yes
+    }
+    OR = {
+        has_government = feudal_government
+        has_government = clan_government
+    }
+    culture = {
+        has_innovation = innovation_hereditary_rule
+        NOT = {
+            has_innovation = innovation_heraldry
+        }
+    }
+}
+should_start_with_high_partition_trigger = {
+    NOR = {
+        historical_succession_access_single_heir_succession_law_trigger = yes
+        historical_succession_access_single_heir_succession_law_youngest_trigger = yes
+        historical_succession_access_single_heir_dynasty_house_trigger = yes
+    }
+    OR = {
+        has_government = feudal_government
+        has_government = clan_government
+    }
+    culture = {
+        has_innovation = innovation_heraldry
+    }
+}
+vassal_contract_allows_single_heir_succession_trigger = {
+    # Vassal Contract allows it
+    custom_description = {
+        text = succession_laws_must_not_be_forced_partition
+        NAND = {
+            is_independent_ruler = no
+            vassal_contract_has_flag = locked_to_partition
+        }
+    }
+}
+
+has_lower_rank_succession_law_trigger = {
+    trigger_if = {
+        limit = {
+            $SUCCESSION_RANK$ >= 3
+        }
+        OR = {
+            has_realm_law = confederate_partition_succession_law
+            has_realm_law = partition_succession_law
+            has_realm_law = high_partition_succession_law
+            has_realm_law = confederate_ultimopartition_succession_law
+            has_realm_law = ultimopartition_succession_law
+            has_realm_law = high_ultimopartition_succession_law
+        }
+    }
+    trigger_else_if = {
+        limit = {
+            $SUCCESSION_RANK$ >= 2
+        }
+        OR = {
+            has_realm_law = confederate_partition_succession_law
+            has_realm_law = partition_succession_law
+            has_realm_law = confederate_ultimopartition_succession_law
+            has_realm_law = ultimopartition_succession_law
+        }
+    }
+    trigger_else_if = {
+        limit = {
+            $SUCCESSION_RANK$ >= 1
+        }
+        OR = {
+            has_realm_law = confederate_partition_succession_law
+            has_realm_law = confederate_ultimopartition_succession_law
+        }
+    }
+    trigger_else = {
+        always = no
+    }
+}
+
+has_less_preferred_order_succession_law_trigger = {
+    save_temporary_scope_value_as = {
+        name = ranking_order
+        value = flag:$ORDER$
+    }
+    trigger_if = {
+        limit = {
+            scope:ranking_order = flag:oldest
+        }
+        prefer_youngest_child_succession_trigger = no
+        OR = {
+            has_realm_law = confederate_ultimopartition_succession_law
+            has_realm_law = ultimopartition_succession_law
+            has_realm_law = high_ultimopartition_succession_law
+            has_realm_law = single_heir_succession_law_youngest
+        }
+    }
+    trigger_else_if = {
+        limit = {
+            scope:ranking_order = flag:youngest
+        }
+        prefer_youngest_child_succession_trigger = yes
+        OR = {
+            has_realm_law = confederate_partition_succession_law
+            has_realm_law = partition_succession_law
+            has_realm_law = high_partition_succession_law
+            has_realm_law = single_heir_succession_law
+        }
+    }
+    trigger_else ={
+        always = no
+    }
+}
+
+prefer_youngest_child_succession_trigger = {
+    culture = {
+        has_cultural_parameter = has_ultimo_laws
+    }
+}
+
+title_can_reduce_partition_law_trigger = {
+	OR = {
+		AND = {
+            OR = {
+                has_title_law = single_heir_succession_law
+                has_title_law = single_heir_succession_law_youngest
+            }
+			holder = {
+				can_have_high_partition_succession_law_trigger = yes
+			}
+		}
+		AND = {
+            OR = {
+                has_title_law = high_partition_succession_law
+                has_title_law = high_ultimopartition_succession_law
+            }
+			holder = {
+				can_have_partition_succession_law_trigger = yes
+			}
+		}
+		AND = {
+            OR = {
+                has_title_law = partition_succession_law
+                has_title_law = ultimopartition_succession_law
+            }
+			has_title_law = partition_succession_law
+			holder = {
+				can_have_confederate_partition_succession_law_trigger = yes
+			}
+		}
+	}
+}
+
+has_partition_succession_realm_law_trigger = {
+	OR = {
+		has_realm_law = confederate_partition_succession_law
+		has_realm_law = partition_succession_law
+		has_realm_law = high_partition_succession_law
+		has_realm_law = confederate_ultimopartition_succession_law
+		has_realm_law = ultimopartition_succession_law
+		has_realm_law = high_ultimopartition_succession_law
+	}
+}

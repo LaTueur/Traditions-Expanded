@@ -1,0 +1,515 @@
+﻿succession_order_laws = {
+	flag = succession_order_laws
+
+	confederate_partition_succession_law = {
+		can_keep = {
+			always = yes
+		}
+		can_pass = {
+			can_change_partition_succession_law_trigger = yes
+			prefer_youngest_child_succession_trigger = no
+		}
+		can_have = {
+			can_have_confederate_partition_succession_law_trigger = yes
+		}
+		should_start_with = {
+			should_start_with_confederate_partition_trigger = yes
+			prefer_youngest_child_succession_trigger = no
+		}
+		succession = {
+			order_of_succession = inheritance
+			traversal_order = children
+			rank = oldest
+			title_division = partition
+			create_primary_tier_titles = yes
+		}
+		flag = partition_succession_law
+		modifier = {
+			direct_vassal_opinion = 5
+			dynasty_house_opinion = 5
+			eligible_child_opinion = 10
+		}
+		pass_cost = {
+			prestige = change_succession_law_prestige_cost
+		}
+
+		ai_will_do = {
+			value = 0
+			if = {
+				limit = {
+					has_less_preferred_order_succession_law_trigger = { ORDER = oldest }
+				}
+				add = 1
+			}
+		}
+	}
+	
+	partition_succession_law = {
+		can_keep = {
+			can_keep_partition_succession_law_trigger = yes
+			prefer_youngest_child_succession_trigger = no
+		}
+		can_pass = {
+			can_change_partition_succession_law_trigger = yes
+		}
+		can_have = {
+			can_have_partition_succession_law_trigger = yes
+		}
+		should_start_with = {
+			should_start_with_partition_trigger = yes
+			prefer_youngest_child_succession_trigger = no
+		}
+		succession = {
+			order_of_succession = inheritance
+			traversal_order = children
+			rank = oldest
+			title_division = partition
+		}
+		flag = partition_succession_law
+		modifier = {
+			direct_vassal_opinion = 5
+			player_heir_opinion = 10
+			eligible_child_except_player_heir_opinion = 5
+		}
+		pass_cost = {
+			prestige = change_succession_law_prestige_cost
+		}
+
+		ai_will_do = {
+			value = 0
+			if = {
+				limit = {
+					has_lower_rank_succession_law_trigger = { SUCCESSION_RANK = 1 }
+				}
+				add = 2
+			}
+			if = {
+				limit = {
+					has_less_preferred_order_succession_law_trigger = { ORDER = oldest }
+				}
+				add = 1
+			}
+		}
+	}
+
+	high_partition_succession_law = {
+		can_keep = {
+			can_keep_high_partition_succession_law_trigger = yes
+			prefer_youngest_child_succession_trigger = no
+		}
+		can_pass = {
+			can_change_partition_succession_law_trigger = yes
+		}
+		can_have = {
+			can_have_high_partition_succession_law_trigger = yes
+		}
+		should_start_with = {
+			should_start_with_high_partition_trigger = yes
+			prefer_youngest_child_succession_trigger = no
+		}
+		succession = {
+			order_of_succession = inheritance
+			traversal_order = children
+			rank = oldest
+			title_division = partition
+			primary_heir_minimum_share = 0.5
+		}
+		flag = partition_succession_law
+		modifier = {
+			direct_vassal_opinion = 5
+			player_heir_opinion = 15
+		}
+		pass_cost = {
+			prestige = change_succession_law_prestige_cost
+		}
+
+		ai_will_do = {
+			value = 0
+			if = {
+				limit = {
+					has_lower_rank_succession_law_trigger = { SUCCESSION_RANK = 2 }
+				}
+				add = 3
+			}
+			if = {
+				limit = {
+					has_less_preferred_order_succession_law_trigger = { ORDER = oldest }
+				}
+				add = 1
+			}
+		}
+	}
+
+	confederate_ultimopartition_succession_law = {
+		can_keep = {
+			always = yes
+		}
+		can_pass = {
+			can_change_partition_succession_law_trigger = yes
+			prefer_youngest_child_succession_trigger = yes
+		}
+		can_have = {
+			can_have_confederate_partition_succession_law_trigger = yes
+		}
+		should_start_with = {
+			should_start_with_confederate_partition_trigger = yes
+			prefer_youngest_child_succession_trigger = yes
+		}
+		succession = {
+			order_of_succession = inheritance
+			traversal_order = children
+			rank = youngest
+			title_division = partition
+			create_primary_tier_titles = yes
+		}
+		flag = partition_succession_law
+		modifier = {
+			direct_vassal_opinion = 5
+			dynasty_house_opinion = 5
+			eligible_child_opinion = 10
+		}
+		pass_cost = {
+			prestige = change_succession_law_prestige_cost
+		}
+
+		ai_will_do = {
+			value = 0
+			if = {
+				limit = {
+					has_less_preferred_order_succession_law_trigger = { ORDER = youngest }
+				}
+				add = 1
+			}
+		}
+	}
+	
+	ultimopartition_succession_law = {
+		can_keep = {
+			can_keep_partition_succession_law_trigger = yes
+			prefer_youngest_child_succession_trigger = yes
+		}
+		can_pass = {
+			can_change_partition_succession_law_trigger = yes
+		}
+		can_have = {
+			can_have_partition_succession_law_trigger = yes
+		}
+		should_start_with = {
+			should_start_with_partition_trigger = yes
+			prefer_youngest_child_succession_trigger = yes
+		}
+		succession = {
+			order_of_succession = inheritance
+			traversal_order = children
+			rank = youngest
+			title_division = partition
+		}
+		flag = partition_succession_law
+		modifier = {
+			direct_vassal_opinion = 5
+			player_heir_opinion = 10
+			eligible_child_except_player_heir_opinion = 5
+		}
+		pass_cost = {
+			prestige = change_succession_law_prestige_cost
+		}
+
+		ai_will_do = {
+			value = 0
+			if = {
+				limit = {
+					has_lower_rank_succession_law_trigger = { SUCCESSION_RANK = 1 }
+				}
+				add = 2
+			}
+			if = {
+				limit = {
+					has_less_preferred_order_succession_law_trigger = { ORDER = youngest }
+				}
+				add = 1
+			}
+		}
+	}
+
+	high_ultimopartition_succession_law = {
+		can_keep = {
+			can_keep_high_partition_succession_law_trigger = yes
+			prefer_youngest_child_succession_trigger = yes
+		}
+		can_pass = {
+			can_change_partition_succession_law_trigger = yes
+		}
+		can_have = {
+			can_have_high_partition_succession_law_trigger = yes
+		}
+		should_start_with = {
+			should_start_with_high_partition_trigger = yes
+			prefer_youngest_child_succession_trigger = yes
+		}
+		succession = {
+			order_of_succession = inheritance
+			traversal_order = children
+			rank = youngest
+			title_division = partition
+			primary_heir_minimum_share = 0.5
+		}
+		flag = partition_succession_law
+		modifier = {
+			direct_vassal_opinion = 5
+			player_heir_opinion = 15
+		}
+		pass_cost = {
+			prestige = change_succession_law_prestige_cost
+		}
+
+		ai_will_do = {
+			value = 0
+			if = {
+				limit = {
+					has_lower_rank_succession_law_trigger = { SUCCESSION_RANK = 2 }
+				}
+				add = 3
+			}
+			if = {
+				limit = {
+					has_less_preferred_order_succession_law_trigger = { ORDER = youngest }
+				}
+				add = 1
+			}
+		}
+	}
+
+	single_heir_succession_law = {
+		can_keep = {
+			can_keep_single_heir_succession_law_trigger = yes
+			vassal_contract_allows_single_heir_succession_trigger = yes
+		}
+		can_have = {
+			can_have_single_heir_succession_law_trigger = yes
+		}
+		can_pass = {
+			can_change_succession_law_trigger = yes
+		}
+		should_start_with = {
+			NAND = {
+				OR = {
+					historical_succession_access_single_heir_succession_law_youngest_trigger = yes
+					can_have_single_heir_youngest_succession_law_trigger = yes
+				}
+				prefer_youngest_child_succession_trigger = yes
+			}
+			OR = {
+				historical_succession_access_single_heir_succession_law_trigger = yes
+				can_have_single_heir_succession_law_trigger = yes
+			}
+		}
+		succession = {
+			order_of_succession = inheritance
+			traversal_order = children
+			rank = oldest
+			title_division = single_heir
+		}
+		flag = advanced_succession_law
+		modifier = {
+			player_heir_opinion = 20
+			eligible_child_except_player_heir_opinion = -5
+		}
+		pass_cost = {
+			prestige = change_succession_law_prestige_cost
+		}
+		revoke_cost = {
+			prestige = change_succession_law_prestige_cost
+		}
+
+		ai_will_do = {
+			value = 0
+			if = {
+				limit = {
+					has_lower_rank_succession_law_trigger = { SUCCESSION_RANK = 3 }
+				}
+				add = 4
+			}
+			if = {
+				limit = {
+					has_less_preferred_order_succession_law_trigger = { ORDER = oldest }
+				}
+				add = 1
+			}
+		}
+	}
+	
+	single_heir_succession_law_youngest = {
+		can_keep = {
+			can_keep_single_heir_youngest_succession_law_trigger = yes
+			vassal_contract_allows_single_heir_succession_trigger = yes
+		}
+		can_have = {
+			can_have_single_heir_youngest_succession_law_trigger = yes
+		}
+		can_pass = {
+			can_change_succession_law_trigger = yes
+		}
+		should_start_with = {
+			NAND = {
+				OR = {
+					historical_succession_access_single_heir_succession_law_trigger = yes
+					can_have_single_heir_succession_law_trigger = yes
+				}
+				prefer_youngest_child_succession_trigger = no
+			}
+			OR = {
+				historical_succession_access_single_heir_succession_law_youngest_trigger = yes
+				can_have_single_heir_youngest_succession_law_trigger = yes
+			}
+		}
+		succession = {
+			order_of_succession = inheritance
+			traversal_order = children
+			rank = youngest
+			title_division = single_heir
+		}
+		
+		flag = advanced_succession_law
+		modifier = {
+			player_heir_opinion = 20
+			eligible_child_except_player_heir_opinion = -5
+		}
+		pass_cost = {
+			prestige = change_succession_law_prestige_cost
+		}
+		revoke_cost = {
+			prestige = change_succession_law_prestige_cost
+		}
+
+		ai_will_do = {
+			value = 0
+			if = {
+				limit = {
+					has_lower_rank_succession_law_trigger = { SUCCESSION_RANK = 3 }
+				}
+				add = 4
+			}
+			if = {
+				limit = {
+					has_less_preferred_order_succession_law_trigger = { ORDER = youngest }
+				}
+				add = 1
+			}
+		}
+	}
+	
+	single_heir_dynasty_house = {
+		can_keep = {
+			can_keep_single_heir_dynasty_house_trigger = yes
+			vassal_contract_allows_single_heir_succession_trigger = yes
+		}
+		can_have = {
+			can_have_single_heir_dynasty_house_trigger = yes
+		}
+		can_pass = {
+			can_change_single_heir_dynasty_house_succession_law_trigger = yes
+		}
+		should_start_with = {
+			historical_succession_access_single_heir_dynasty_house_trigger = yes
+		}
+		succession = {
+			order_of_succession = inheritance
+			traversal_order = dynasty_house
+			rank = oldest
+			title_division = single_heir
+		}
+		
+		flag = advanced_succession_law
+		modifier = {
+			eligible_child_except_player_heir_opinion = -15
+			direct_vassal_opinion = -5
+			dynasty_house_opinion = 5
+		}
+		pass_cost = {
+			prestige = change_succession_law_prestige_cost
+		}
+		revoke_cost = {
+			prestige = change_succession_law_prestige_cost
+		}
+
+		ai_will_do = {
+			if = {
+				limit = {
+					primary_title.tier > tier_county
+					OR = {
+						#West Slavic
+						has_culture = culture:czech
+						has_culture = culture:slovien
+					}
+				}
+				value = 6
+			}
+		}
+	}
+
+	bishop_theocratic_succession_law = {
+		can_keep = {
+			can_have_bishop_theocratic_succession_law_trigger = yes # same as can_have
+		}
+		can_have = {
+			can_have_bishop_theocratic_succession_law_trigger = yes
+		}
+		should_start_with = {
+			always = yes
+		}
+		succession = {
+			order_of_succession = theocratic
+			faith = same_faith
+			pool_character_config = pool_theocratic_succession
+		}
+	}
+
+	holy_order_succession_law = {
+		can_keep = {
+			can_have_holy_order_succession_law_trigger = yes # same as can_have
+		}
+		can_have = {
+			can_have_holy_order_succession_law_trigger = yes
+		}
+		should_start_with = {
+			has_government = holy_order_government
+		}
+		succession = {
+			order_of_succession = theocratic
+			faith = same_faith
+			pool_character_config = pool_holy_order_succession
+		}
+	}
+	
+	mercenary_company_succession_law = {
+		can_keep = {
+			can_have_mercenary_succession_law_trigger = yes
+		}
+		can_have = {
+			can_have_mercenary_succession_law_trigger = yes
+		}
+		should_start_with = {
+			has_government = mercenary_government
+		}
+		succession = {
+			order_of_succession = company
+			pool_character_config = pool_mercenary_succession
+		}
+	}
+
+	city_succession_law = {
+		can_keep = {
+			can_have_city_succession_law_trigger = yes
+		}
+		can_have = {
+			can_have_city_succession_law_trigger = yes
+		}
+		should_start_with = {
+			has_government = republic_government
+		}
+		succession = {
+			order_of_succession = generate
+			pool_character_config = pool_city_succession
+		}
+	}
+}

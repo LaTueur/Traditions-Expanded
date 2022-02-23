@@ -1,0 +1,7 @@
+﻿same_culture_count_or_above = {
+	base = ruler
+	conditions = { 
+        culture = prev
+        primary_title.tier >= tier_county
+    }
+}

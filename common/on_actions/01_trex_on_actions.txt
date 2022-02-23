@@ -1,0 +1,92 @@
+﻿on_prestige_level_gain = {
+    on_actions = {
+        trex_levy_size_per_prestige_level
+    }
+}
+on_prestige_level_loss = {
+    on_actions = {
+        trex_levy_size_per_prestige_level
+    }
+}
+on_tradition_added = {
+    on_actions = {
+        trex_levy_size_per_prestige_level
+    }
+}
+on_tradition_removed = {
+    on_actions = {
+        trex_levy_size_per_prestige_level
+    }
+}
+on_character_culture_change = {
+    on_actions = {
+        trex_levy_size_per_prestige_level
+    }
+}
+on_title_gain = {
+    on_actions = {
+        trex_levy_size_per_prestige_level
+    }
+}
+on_title_lost = {
+    on_actions = {
+        trex_levy_size_per_prestige_level
+    }
+}
+# Handles modifier assignment and removal when prestige level, culture, tradition, ruler status changes
+trex_levy_size_per_prestige_level = {
+    trigger = {
+        OR = {
+            trex_has_levy_size_per_prestige_level_modifier_trigger = yes
+            trex_uses_levy_size_per_prestige_level_trigger = yes
+        }
+    }
+    effect = {
+        trex_remove_levy_size_per_prestige_level_effect = yes
+        trex_assign_levy_size_per_prestige_level_effect = yes
+    }
+}
+random_yearly_everyone_pulse = {
+    on_actions = {
+        trex_deviant_trait_more_common_random
+    }
+}
+# Since events for the deviant trait is really rare, there is an extra chance for this to happen for characters with the tradition
+trex_deviant_trait_more_common_random = {
+    trigger = {
+        trex_trait_more_common_trigger = { TRAIT = deviant }
+        is_deviant_trigger = no
+		age >= 16
+		age <  50
+		NOT = { has_trait = chaste }
+    }
+    random_on_action = {
+        chance_to_happen = 2
+        100 = 0
+        100 = trex_deviant_trait_more_common_assign
+    }
+}
+trex_deviant_trait_more_common_assign = {
+	weight_multiplier = {
+		base = 1
+		modifier = { #Less likely if you already have an extreme trait
+			add = -0.75
+			has_special_content_trait = yes
+		}
+		modifier = {
+			add = 0.2
+			has_trait = lustful
+		}
+	}
+    effect = {
+        if = {
+            limit = {
+                is_ai = no
+            }
+            trigger_event = { id = trait_specific.6001 days = 12 }
+        }
+        else = {
+            give_deviant_secret_or_trait_effect = yes
+        }
+    }
+}

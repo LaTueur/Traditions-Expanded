@@ -1,0 +1,640 @@
+# Form the actual Mongol Empire...
+form_the_mongol_empire_effect = {
+	save_scope_as = mongol_founder
+
+	#Create the title
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
+	}
+	title:e_mongol_empire = {
+		change_title_holder = {
+			holder = scope:mongol_founder
+			change = scope:title_change
+		}
+	}
+	resolve_title_and_vassal_change = scope:title_change
+
+	add_realm_law_skip_effects = high_ultimopartition_succession_law
+
+	assert_if = {
+		limit = { NOT = { exists = title:e_mongol_empire } }
+		text = "Mongol Empire title was not created!"
+	}
+
+	hidden_effect = { set_primary_title_to = title:e_mongol_empire }
+
+	every_held_title = {
+		limit = {
+			tier = tier_empire
+			NOT = { this = title:e_mongol_empire }
+		}
+		scope:mongol_founder = {
+			destroy_title = prev
+		}
+	}
+
+	spawn_mongol_troops_effect = yes
+
+	set_global_variable = {
+		name = mongol_empire_has_spawned
+		value = yes
+	}
+}
+
+reduce_partition_succession_law_effect = {
+	if = {
+		limit = {
+			has_title_law = single_heir_succession_law
+		}
+		add_title_law = high_partition_succession_law
+	}
+	else_if = {
+		limit = {
+			has_title_law = high_partition_succession_law
+		}
+		add_title_law = partition_succession_law
+	}
+	else_if = {
+		limit = {
+			has_title_law = partition_succession_law
+		}
+		add_title_law = confederate_partition_succession_law
+	}
+	else_if = {
+		limit = {
+			has_title_law = single_heir_succession_law_youngest
+		}
+		add_title_law = high_ultimopartition_succession_law
+	}
+	else_if = {
+		limit = {
+			has_title_law = high_ultimopartition_succession_law
+		}
+		add_title_law = ultimopartition_succession_law
+	}
+	else_if = {
+		limit = {
+			has_title_law = ultimopartition_succession_law
+		}
+		add_title_law = confederate_ultimopartition_succession_law
+	}
+}
+
+give_random_likely_secret_effect = {
+	save_temporary_scope_as = secret_getter
+	random_list = {
+		100 = { #DEVIANT
+			trigger = {
+				is_adult = yes
+				secret_deviant_is_valid_trigger = { OWNER = this }
+				NOR = {
+					has_trait = chaste
+					has_trait = celibate
+				}
+				NOT = { any_secret = { secret_type = secret_deviant } }
+				trait_is_shunned_or_criminal_in_my_or_lieges_faith_trigger = { TRAIT = deviant GENDER_CHARACTER = scope:secret_getter }
+
+			}
+			modifier = {
+				has_trait = lustful
+				add = 200
+			}
+			modifier = {
+				trex_trait_more_common_trigger = { TRAIT = deviant }
+				add = 300
+			}
+			ai_value_modifier = {
+				ai_boldness = tiny_chance_impact_positive_ai_value #+50 for high positive boldness
+				ai_honor = tiny_chance_impact_negative_ai_value #+50 for high negative honor
+				ai_zeal = medium_chance_impact_negative_ai_value #-200 for high positive zeal
+			}
+			give_deviant_secret_or_trait_effect = yes
+		}
+		200 = { #HOMOSEXUAL
+			trigger = {
+				is_adult = yes
+				trait_is_shunned_or_criminal_in_my_or_lieges_faith_trigger = { TRAIT = sodomite GENDER_CHARACTER = scope:secret_getter }
+				OR = {
+					has_sexuality = homosexual
+					has_sexuality = bisexual
+				}
+				NOT = { any_secret = { secret_type = secret_homosexual } }
+			}
+			modifier = { 						
+				any_relation = { type = lover sex_opposite_of = prev }
+				factor = 0.1
+			}
+			give_homosexual_secret_or_nothing_effect = yes
+		}
+		150 = { #MURDER ATTEMPT
+			trigger = {
+				is_adult = yes
+				save_temporary_scope_as = murderer
+				OR = {
+					any_relation = {
+						type = rival
+						give_random_likely_secret_murder_attempt_victim_trigger = yes
+					}
+					any_close_or_extended_family_member = {
+						reverse_opinion = {
+							target = prev
+							value <= -10
+						}
+						give_random_likely_secret_murder_attempt_victim_trigger = yes
+					}
+				}
+			}
+			ai_value_modifier = {
+				ai_boldness = tiny_chance_impact_positive_ai_value #+50 for high positive boldness
+				ai_greed = tiny_chance_impact_positive_ai_value #+50 for high positive greed
+				ai_compassion = low_chance_impact_negative_ai_value #-100 for high positive compassion
+			}
+
+			save_temporary_scope_as = murderer
+
+			every_relation = {
+				type = rival
+				limit = {
+					give_random_likely_secret_murder_attempt_victim_trigger = yes
+				}
+				add_to_list = victim_options
+			}
+			every_close_or_extended_family_member = {
+				limit = {
+					reverse_opinion = {
+						target = prev
+						value <= -10
+					}
+					give_random_likely_secret_murder_attempt_victim_trigger = yes
+				}
+				add_to_list = victim_options
+			}
+
+			random_in_list = {
+				list = victim_options
+				save_temporary_scope_as = victim
+			}
+
+			add_secret = {
+				type = secret_murder_attempt
+				target = scope:victim
+			}	
+		}
+		100 = { #CANNIBAL
+			trigger = {
+				secret_cannibal_is_valid_trigger = { OWNER = this }
+				NOT = { any_secret = { secret_type = secret_cannibal } }
+				trait_is_shunned_or_criminal_in_my_or_lieges_faith_trigger = { TRAIT = cannibal GENDER_CHARACTER = scope:secret_getter }
+			}
+			ai_value_modifier = {
+				ai_boldness = tiny_chance_impact_positive_ai_value #+50 for high positive boldness
+				ai_greed = tiny_chance_impact_positive_ai_value #+50 for high positive greed
+				ai_zeal = low_chance_impact_negative_ai_value #-100 for high positive zeal
+				ai_compassion = medium_chance_impact_negative_ai_value #-200 for high positive compassion
+			}
+			modifier = {
+				is_adult = no
+				add = -80
+			}
+
+			give_cannibal_secret_or_trait_effect = yes
+		}
+		200 = { #HERETIC
+			trigger = {
+				NOT = { any_secret = { secret_type = secret_non_believer } }
+			}
+			modifier = {
+				add = {
+					value = ai_zeal
+					multiply = -2
+				}
+			}
+
+			give_non_believer_secret_effect = yes
+		}
+		400 = { #LOVER
+			trigger = {
+				is_adult = yes
+				NOT = { has_trait = celibate }
+				save_temporary_scope_as = lover_1
+				OR = {
+					any_courtier_or_guest = {
+						give_random_likely_secret_lover_trigger = yes
+					}
+					any_vassal = {
+						any_courtier_or_guest = {
+							give_random_likely_secret_lover_trigger = yes
+						}
+					}
+				}
+			}
+			modifier = {
+				OR = {
+					has_trait = lustful
+					has_trait = seducer
+				}
+				add = 400
+			}
+			modifier = {
+				has_trait = chaste
+				add = -300
+			}
+			ai_value_modifier = {
+				ai_compassion = medium_chance_impact_positive_ai_value #+200 for high positive compassion
+			}
+
+			save_temporary_scope_as = lover_1
+			random_courtier_or_guest = {
+				limit = { give_random_likely_secret_lover_trigger = yes }
+				weight = {
+					base = 1
+					modifier = {
+						has_trait = lustful
+						factor = 3
+					}
+				}
+				save_temporary_scope_as = lover
+			}
+ 			if = {
+ 				limit = { NOT = { exists = scope:lover } }
+ 				random_vassal = {
+ 					limit = { any_courtier_or_guest = { give_random_likely_secret_lover_trigger = yes } }
+ 					random_courtier_or_guest = {
+ 						limit = { give_random_likely_secret_lover_trigger = yes }
+ 						weight = {
+ 							base = 1
+	 						modifier = {
+								has_trait = lustful
+								factor = 3
+							}
+ 						}
+						save_temporary_scope_as = lover
+ 					}
+ 				}
+ 			}
+
+ 			set_relation_lover = scope:lover
+		}
+		100 = { #INCESTOUS LOVER
+			trigger = {
+				is_adult = yes
+				NOT = { has_trait = celibate }
+				save_temporary_scope_as = lover_2
+				any_close_family_member = {
+					give_random_likely_secret_incestous_lover_trigger = yes
+				}
+			}
+			modifier = {
+				has_trait = deviant
+				add = 100
+			}
+
+			random_close_family_member = {
+				limit = { give_random_likely_secret_incestous_lover_trigger = yes }
+				set_relation_lover = prev
+			}
+		}
+		100 = { #WITCH
+			trigger = {
+				NOT = { any_secret = { secret_type = secret_witch } }
+				trait_is_shunned_or_criminal_in_my_or_lieges_faith_trigger = { TRAIT = witch GENDER_CHARACTER = scope:secret_getter }
+			}
+			ai_value_modifier = {
+				ai_greed = tiny_chance_impact_positive_ai_value #+50 for high positive greed
+				ai_zeal = medium_chance_impact_negative_ai_value #+200 for high negative zeal
+				ai_compassion = tiny_chance_impact_negative_ai_value #+50 for high negative compassion
+			}
+			modifier = {
+				has_trait = lifestyle_mystic
+				add = 100
+			}
+			modifier = {
+				has_trait = lifestyle_physician
+				add = 40
+			}
+
+			add_secret = {
+				type = secret_witch
+			}
+		}
+	}
+}
+
+courtier_guest_pool_character_secret_giving_effect = {
+	random_list = {
+		# Deviant
+		200 = {
+			trigger = {
+				NOR = {
+					has_trait = celibate
+					has_trait = chaste
+					any_secret = { secret_type = secret_deviant }
+					has_trait = deviant
+				}
+			}
+			modifier = {
+				has_trait = lustful
+				add = 50
+			}
+			modifier = {
+				trex_trait_more_common_trigger = { TRAIT = deviant }
+				add = 300
+			}
+
+			give_deviant_secret_or_trait_effect = yes
+		}
+		# Homosexual
+		100 = {
+			trigger = {
+				is_male = yes
+				OR = {
+					has_sexuality = homosexual
+					has_sexuality = bisexual
+				}
+				NOT = { has_trait = celibate }
+				NOR = {
+					any_secret = { secret_type = secret_homosexual }
+					has_trait = sodomite
+				}
+			}
+			modifier = {
+				has_trait = chaste
+				add = -50
+			}
+
+			give_homosexual_secret_or_nothing_effect = yes
+		}
+		# Cannibal
+		100 = {
+			trigger = {
+				OR = {
+					has_trait = lunatic
+					has_trait = possessed
+					ai_compassion <= high_negative_ai_value
+				}
+				NOR = {
+					any_secret = { secret_type = secret_cannibal }
+					has_trait = cannibal
+				}
+			}
+			ai_compassion_target_modifier = { VALUE = -50 }
+
+			give_cannibal_secret_or_trait_effect = yes
+		}
+		# Non-believer
+		500 = {
+			trigger = {
+				NOR = {
+					has_trait = zealous
+					any_secret = { secret_type = secret_non_believer }
+					has_character_modifier = known_non_believer
+				}
+			}
+			ai_zeal_target_modifier = { VALUE = -50 }
+			give_non_believer_secret_effect = yes
+		}
+		# Witch
+		100 = {
+			trigger = {
+				NOR = {
+					has_trait = zealous
+					any_secret = { secret_type = secret_witch }
+					has_trait = witch
+				}
+			}
+			modifier = {
+				OR = {
+					has_trait = lifestyle_mystic
+					has_trait = lifestyle_herbalist
+				}
+				add = 50
+			}
+			ai_greed_target_modifier = { VALUE = 50 }
+		}
+	}
+}
+
+###WOUND TREATMENT OPTIONS###
+
+safe_wound_treatment_effect = {
+	custom_tooltip = safe_wound_treatment.tt
+
+	hidden_effect = {
+		save_court_physician_as_effect = { SCOPE_NAME = physician }
+
+		if = {
+			limit = { 
+				exists = scope:physician 
+				court_physician_available_trigger = yes
+			}
+
+			#Physician skill up
+			scope:physician = {
+				if = {
+					limit = {
+						NOT = { has_trait = physician_3 }
+					}
+					physician_level_up_chance_effect = { CHANCE = 10 }
+				}
+			}
+
+			random_list = {
+				10 = { #Success
+					modifier = {
+						scope:physician = {
+							learning >= mediocre_skill_rating
+							learning < medium_skill_rating
+						}
+						factor = 2
+					}
+					modifier = {
+						scope:physician = {
+							learning >= medium_skill_rating
+							learning < decent_skill_rating
+						}
+						factor = 4
+					}
+					modifier = {
+						scope:physician = {
+							learning >= decent_skill_rating
+							learning < high_skill_rating
+						}
+						factor = 7
+					}
+					modifier = {
+						scope:physician = {
+							learning >= high_skill_rating
+						}
+						factor = 10
+					}
+					modifier = {
+						scope:physician = { has_trait = physician_1 }
+						factor = 2
+					}
+					modifier = {
+						scope:physician = { has_trait = physician_2 }
+						factor = 5
+					}
+					modifier = {
+						scope:physician = { has_trait = physician_3 }
+						factor = 10
+					}
+					modifier = {
+						scope:physician = {
+							culture = {
+								has_cultural_parameter = better_wound_treatment
+							}
+						}
+						factor = 2
+					}
+					if = {
+						limit = {
+							has_trait = wounded_1
+						}
+						trigger_event = {
+							id = health.0100
+							days = { 2 3 }
+						}
+					}
+					else = {
+						trigger_event = health.4101 #Safe treatment success
+					}
+				}
+				50 = { #Failure
+					if = {
+						limit = {
+							has_trait = wounded_1
+						}
+						trigger_event = {
+							id = health.0101
+							days = { 2 3 }
+						}
+					}
+					else = {
+						trigger_event = health.4102 #Safe treatment failure
+					}
+				}	
+			}
+		}
+	}
+}
+
+risky_wound_treatment_effect = {
+	custom_tooltip = risky_wound_treatment.tt
+
+	hidden_effect = {
+		save_court_physician_as_effect = { SCOPE_NAME = physician }
+
+		if = {
+			limit = { 
+				exists = scope:physician 
+				court_physician_available_trigger = yes
+			}
+
+			#Physician skill up
+			scope:physician = {
+				physician_level_up_chance_effect = { CHANCE = 10 }
+			}
+
+			random_list = {
+				1 = { #Success
+					modifier = {
+						scope:physician = {
+							learning >= mediocre_skill_rating
+							learning < medium_skill_rating
+						}
+						factor = 2
+					}
+					modifier = {
+						scope:physician = {
+							learning >= medium_skill_rating
+							learning < decent_skill_rating
+						}
+						factor = 4
+					}
+					modifier = {
+						scope:physician = {
+							learning >= decent_skill_rating
+							learning < high_skill_rating
+						}
+						factor = 7
+					}
+					modifier = {
+						scope:physician = {
+							learning >= high_skill_rating
+						}
+						factor = 10
+					}
+					modifier = {
+						scope:physician = { has_trait = physician_1 }
+						factor = 2
+					}
+					modifier = {
+						scope:physician = { has_trait = physician_2 }
+						factor = 5
+					}
+					modifier = {
+						scope:physician = { has_trait = physician_3 }
+						factor = 10
+					}
+					modifier = {
+						scope:physician = {
+							culture = {
+								has_cultural_parameter = better_wound_treatment
+							}
+						}
+						factor = 2
+					}
+
+					modifier = { #Gangrene! Lower chance of success
+						factor = 0.5
+						has_character_modifier = gangrene_modifier
+					}
+
+					#Critical or normal success?
+					random_list = {
+						1 = {
+							modifier = {
+								scope:physician = { has_trait = physician_1 }
+								factor = 2
+							}
+							modifier = {
+								scope:physician = { has_trait = physician_2 }
+								factor = 3.5
+							}
+							modifier = {
+								scope:physician = { has_trait = physician_3 }
+								factor = 5
+							}
+							modifier = {
+								has_character_modifier = infected_wound_modifier
+								factor = 0.7
+							}
+							modifier = { #Gangrene! Lower chance of critical success
+								has_character_modifier = gangrene_modifier
+								factor = 0.7
+							}
+							modifier = {
+								scope:physician = {
+									culture = {
+										has_cultural_parameter = better_wound_treatment
+									}
+								}
+								factor = 2
+							}
+							trigger_event = health.4103 #Critical success
+						}
+						5 = {
+							trigger_event = health.4104 #Normal success
+						}
+					}
+				}
+				10 = { #Failure
+					trigger_event = health.4105 #Failure
+				}
+			}
+		}
+	}
+}

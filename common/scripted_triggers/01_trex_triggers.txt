@@ -1,0 +1,61 @@
+trex_trait_more_common_trigger = {
+    culture = {
+        has_cultural_parameter = $TRAIT$_trait_more_common
+    }
+}
+trex_can_get_more_common_trait_trigger = {
+    trex_trait_more_common_trigger = { TRAIT = $TRAIT$ }
+    NOR = {
+        has_trait = $TRAIT$
+        has_trait = $OPPOSITE$
+    }
+}
+trex_trait_less_common_trigger = {
+    culture = {
+        has_cultural_parameter = $TRAIT$_trait_more_common
+    }
+}
+can_be_co_ruler_trigger = {
+	can_be_councillor_basics_trigger = yes
+	OR = {
+		is_ruler = yes
+		AND = {
+			is_female = yes
+			$COURT_OWNER$ = {
+                is_female = yes
+            }
+		}
+		AND = {
+			is_male = yes
+			$COURT_OWNER$ = {
+                is_male = yes
+            }
+		}
+	}
+}
+trex_uses_levy_size_per_prestige_level_trigger = {
+    is_ruler = yes
+    culture = {
+        has_cultural_parameter = levy_size_per_prestige_level
+    }
+}
+trex_has_levy_size_per_prestige_level_modifier_trigger = {
+    OR = {
+        has_character_modifier = trex_levy_size_per_prestige_level_1
+        has_character_modifier = trex_levy_size_per_prestige_level_2
+        has_character_modifier = trex_levy_size_per_prestige_level_3
+        has_character_modifier = trex_levy_size_per_prestige_level_4
+        has_character_modifier = trex_levy_size_per_prestige_level_5
+    }
+}
+trex_possible_ruler_trigger = {
+    trigger_if = {
+        limit = {
+            is_male = yes
+        }
+        faith_dominant_gender_male_or_equal = yes
+    }
+    trigger_else = {
+        faith_dominant_gender_female_or_equal = yes
+    }
+}

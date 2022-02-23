@@ -1,0 +1,33 @@
+trex_remove_levy_size_per_prestige_level_effect = {
+    switch = {
+        trigger = has_character_modifier
+        trex_levy_size_per_prestige_level_1 = { remove_character_modifier = trex_levy_size_per_prestige_level_1 }
+        trex_levy_size_per_prestige_level_2 = { remove_character_modifier = trex_levy_size_per_prestige_level_2 }
+        trex_levy_size_per_prestige_level_3 = { remove_character_modifier = trex_levy_size_per_prestige_level_3 }
+        trex_levy_size_per_prestige_level_4 = { remove_character_modifier = trex_levy_size_per_prestige_level_4 }
+        trex_levy_size_per_prestige_level_5 = { remove_character_modifier = trex_levy_size_per_prestige_level_5 }
+    }
+}
+trex_assign_levy_size_per_prestige_level_effect = {
+    if = {
+        limit = {
+            trex_uses_levy_size_per_prestige_level_trigger = yes
+        }
+        switch = {
+            trigger = prestige_level
+            1 = { add_character_modifier = { modifier = trex_levy_size_per_prestige_level_1 } }
+            2 = { add_character_modifier = { modifier = trex_levy_size_per_prestige_level_2 } }
+            3 = { add_character_modifier = { modifier = trex_levy_size_per_prestige_level_3 } }
+            4 = { add_character_modifier = { modifier = trex_levy_size_per_prestige_level_4 } }
+            5 = { add_character_modifier = { modifier = trex_levy_size_per_prestige_level_5 } }
+        }
+    }
+}
+trex_reclusive_prestige_loss_effect = {
+    if = {
+        limit = {
+            NOT = { culture = { has_cultural_parameter = reclusive_decision_no_prestige_cost } }
+        }
+        add_prestige = medium_prestige_loss
+    }
+}
