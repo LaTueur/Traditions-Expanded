@@ -127,4 +127,15 @@ can_be_journaller = { # Must be a learned character with the scholarship lifesty
 	}
 }
 
-
+can_be_athletic = { # Must be willing and interested in getting out and exercising.
+	has_traits_that_negate_athletic_trigger = no #Are we already athletic or does any of our traits contradict athletic?
+	trigger_if = {
+		limit = {
+			culture = { NOT = { has_cultural_parameter = athletic_trait_lower_requirement } }
+		}
+		OR = {
+			has_trait = brave
+			has_trait = diligent
+		}
+	}
+}
