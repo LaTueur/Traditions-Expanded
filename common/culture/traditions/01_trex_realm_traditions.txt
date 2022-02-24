@@ -139,12 +139,12 @@ tradition_junior_right = {
 	}
 }
 tradition_void_for_vagueness = {
-	category = societal
+	category = realm
 
 	layers = {
-		0 = learning
-		1 = mediterranean
-		4 = conversation.dds
+		0 = intrigue
+		1 = western
+		4 = crown.dds
 	}
     can_pick = {
 		custom_tooltip = {

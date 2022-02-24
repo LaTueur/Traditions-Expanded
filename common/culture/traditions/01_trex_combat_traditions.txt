@@ -147,9 +147,9 @@ tradition_on_foot = {
 	category = combat
 
 	layers = {
-		0 = learning
-		1 = indian
-		4 = knight.dds
+		0 = steward
+		1 = western
+		4 = soldiers4.dds
 	}
 	is_shown = {
 		trex_culture_has_cavalry_tradition_trigger = no

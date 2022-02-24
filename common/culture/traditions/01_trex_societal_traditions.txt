@@ -177,7 +177,7 @@ tradition_open_to_criticism = {
 	category = societal
 
 	layers = {
-		0 = learning
+		0 = intrigue
 		1 = mediterranean
 		4 = conversation.dds
 	}
@@ -254,7 +254,7 @@ tradition_respected_solitude = {
 	layers = {
 		0 = learning
 		1 = mediterranean
-		4 = conversation.dds
+		4 = sittingman.dds
 	}
 	
 	parameters = {
@@ -321,9 +321,9 @@ tradition_dog_eat_dog = {
 	category = societal
 
 	layers = {
-		0 = learning
-		1 = mediterranean
-		4 = conversation.dds
+		0 = martial
+		1 = mena
+		4 = bone.dds
 	}
 	can_pick = {
 		custom_tooltip = {

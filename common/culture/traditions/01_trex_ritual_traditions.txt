@@ -116,7 +116,7 @@ tradition_miracle_of_birth = {
 	layers = {
 		0 = learning
 		1 = mediterranean
-		4 = conversation.dds
+		4 = greeting.dds
 	}
     is_shown = {
     }
@@ -184,9 +184,9 @@ tradition_bare_contracts = {
 	category = ritual
 
 	layers = {
-		0 = learning
-		1 = mediterranean
-		4 = conversation.dds
+		0 = intrigue
+		1 = mena
+		4 = diplomat.dds
 	}
     can_pick = {
 		custom_tooltip = {
@@ -265,9 +265,9 @@ tradition_military_parades = {
 	category = ritual
 
 	layers = {
-		0 = learning
-		1 = mediterranean
-		4 = conversation.dds
+		0 = diplo
+		1 = western
+		4 = laurel.dds
 	}
 	
 	parameters = {
@@ -275,7 +275,7 @@ tradition_military_parades = {
 		parade_at_feasts = yes
 	}
 	character_modifier = {
-		army_toughness_mult = -0.1
+		army_toughness_mult = -0.05
 		knight_effectiveness_mult = -0.1
 		monthly_prestige_gain_per_knight_add = 0.05
 	}
