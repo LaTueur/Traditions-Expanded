@@ -1,38 +1,41 @@
-trex_court_food_quality_multiplier = {
+﻿trex_court_food_quality_multiplier = {
     if = {
         limit = {
             has_royal_court = yes
             amenity_level = { type = court_food_quality value >= 5 }
         }
-        multiply = 2.5
+        value = 2.5
     }
     else_if = {
         limit = {
             has_royal_court = yes
             amenity_level = { type = court_food_quality value >= 4 }
         }
-        multiply = 2
+        value = 2
     }
     else_if = {
         limit = {
             has_royal_court = yes
             amenity_level = { type = court_food_quality value >= 3 }
         }
-        multiply = 1.5
+        value = 1.5
     }
     else_if = {
         limit = {
             has_royal_court = yes
             amenity_level = { type = court_food_quality value >= 2 }
         }
-        multiply = 1
+        value = 1
     }
     else_if = {
         limit = {
             has_royal_court = yes
             amenity_level = { type = court_food_quality value <= 1 }
         }
-        multiply = 0.5
+        value = 0.5
+    }
+    else = {
+        value = 1
     }
 }
 trex_parade_prestige_value = {

@@ -8,5 +8,4 @@
  high_ultimopartition_succession_law_effects:2 "\n#V Under $high_ultimopartition_succession_law$ [succession], the lion's share of [titles] will go to your [player_heir] - the rest will be divided between your children.#!\n\n#weak $ultimopartition_base_desc$\nThe Player Heir will #emp always#! inherit at least half of the late Ruler's Titles.\n#!"
  confederate_ultimopartition_succession_law:1 "Confederate Ultimopartition"
  confederate_ultimopartition_succession_law_subname:0 "All Children Inherit Equally"
- confederate_ultimopartition_succession_law_effects:2 "\n#V Under $confederate_ultimopartition_succession_law$, your [titles] will be divided equally between your children. New [titles] may be created for older [realm_heirs].#!\n\n#weak $ultimopartition_base_desc$\Older children will have Titles created for them, if enough land is held.\n\n#!#X Tribal rulers are locked to this succession type.#!\n"
- 
+ confederate_ultimopartition_succession_law_effects:2 "\n#V Under $confederate_ultimopartition_succession_law$, your [titles] will be divided equally between your children. New [titles] may be created for older [realm_heirs].#!\n\n#weak $ultimopartition_base_desc$\nOlder children will have Titles created for them, if enough land is held.\n\n#!#X Tribal rulers are locked to this succession type.#!\n"

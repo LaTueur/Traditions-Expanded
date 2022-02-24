@@ -324,7 +324,7 @@ councillor_court_chaplain = {
 councillor_spouse = {
 	special_council_position = yes
 	auto_fill = {
-		NOT = { has_cultural_parameter = co_ruler_instead_of_spouse }
+		NOT = { culture = { has_cultural_parameter = co_ruler_instead_of_spouse } }
 	}
 	can_fire = no
 	can_reassign = no

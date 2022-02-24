@@ -1,4 +1,4 @@
-on_tradition_added = {
+﻿on_tradition_added = {
     effect = {
         save_scope_as = changing_culture
         set_variable = { name = added_tradition value = scope:tradition }

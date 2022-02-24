@@ -1,3 +1,5 @@
+﻿
+
 host_feast_decision = {
 	picture = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	ai_check_interval = 60
@@ -132,7 +134,7 @@ host_feast_decision = {
 						add = medium_piety_value
 					}
 				}
-				trex_court_food_quality_multiplier = yes
+				multiply = trex_court_food_quality_multiplier
 
 				min = medium_piety_value # Always give some piety, even if we don't have any of the specified tenets.
 			}
@@ -149,6 +151,7 @@ host_feast_decision = {
 				}
 			}
 			add_prestige = {
+				value = 0
 				if = {
 					limit = {
 						culture = {
@@ -165,7 +168,7 @@ host_feast_decision = {
 					}
 					add = trex_parade_prestige_value
 				}
-				trex_court_food_quality_multiplier = yes
+				multiply = trex_court_food_quality_multiplier
 			}
 		}
 

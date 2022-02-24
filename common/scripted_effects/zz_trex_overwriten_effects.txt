@@ -1,4 +1,4 @@
-# Form the actual Mongol Empire...
+﻿# Form the actual Mongol Empire...
 form_the_mongol_empire_effect = {
 	save_scope_as = mongol_founder
 
@@ -16,7 +16,15 @@ form_the_mongol_empire_effect = {
 	}
 	resolve_title_and_vassal_change = scope:title_change
 
-	add_realm_law_skip_effects = high_ultimopartition_succession_law
+	if = {
+		limit = {
+			prefer_youngest_child_succession_trigger = yes
+		}
+		add_realm_law_skip_effects = high_ultimopartition_succession_law
+	}
+	else = {
+		add_realm_law_skip_effects = high_partition_succession_law
+	}
 
 	assert_if = {
 		limit = { NOT = { exists = title:e_mongol_empire } }

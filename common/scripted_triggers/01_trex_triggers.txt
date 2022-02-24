@@ -1,4 +1,4 @@
-trex_trait_more_common_trigger = {
+﻿trex_trait_more_common_trigger = {
     culture = {
         has_cultural_parameter = $TRAIT$_trait_more_common
     }
@@ -12,7 +12,7 @@ trex_can_get_more_common_trait_trigger = {
 }
 trex_trait_less_common_trigger = {
     culture = {
-        has_cultural_parameter = $TRAIT$_trait_more_common
+        has_cultural_parameter = $TRAIT$_trait_less_common
     }
 }
 can_be_co_ruler_trigger = {
@@ -59,13 +59,13 @@ trex_possible_ruler_trigger = {
         faith_dominant_gender_female_or_equal = yes
     }
 }
-trex_no_tradition_blocks_cavarly_trigger = {
+trex_no_tradition_blocks_cavalry_trigger = {
     custom_tooltip = {
         text = cannot_have_tradition_on_foot
         NOT = { any_in_list = { list = traits this = flag:tradition_on_foot } }
     }
 }
-trex_culture_has_cavarly_tradition_trigger = {
+trex_culture_has_cavalry_tradition_trigger = {
     OR = {
         culture_has_light_cavalry_maa = yes
         culture_has_heavy_cavalry_maa = yes

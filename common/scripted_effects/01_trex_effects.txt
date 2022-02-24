@@ -1,4 +1,4 @@
-trex_remove_levy_size_per_prestige_level_effect = {
+﻿trex_remove_levy_size_per_prestige_level_effect = {
     switch = {
         trigger = has_character_modifier
         trex_levy_size_per_prestige_level_1 = { remove_character_modifier = trex_levy_size_per_prestige_level_1 }

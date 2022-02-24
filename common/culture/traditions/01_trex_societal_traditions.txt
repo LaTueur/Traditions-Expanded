@@ -61,7 +61,7 @@
 							any_same_culture_count_or_above = {
 								save_temporary_scope_as = checked_ruler
 								prestige_level >= 4
-								has_trait = martial_education
+								has_trait = education_martial
 							}
 						}
 					}
@@ -156,20 +156,22 @@ tradition_no_taboos = {
 	
 	ai_will_do = {
 		value = 100
-		if = {
-			limit = {
-				NOR = {
-                    has_trait = deviant
-                    is_deviant_trigger = yes
-                }
+		scope:character = {
+			if = {
+				limit = {
+					NOR = {
+						has_trait = lustful
+						is_deviant_trigger = yes
+					}
+				}
+				multiply = 0
 			}
-			multiply = 0
-		}
-		if = {
-			limit = {
-				is_deviant_trigger = no
+			if = {
+				limit = {
+					is_deviant_trigger = no
+				}
+				multiply = 0.1
 			}
-			multiply = 0.1
 		}
 	}
 }

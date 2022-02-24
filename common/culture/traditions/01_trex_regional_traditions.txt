@@ -1,1 +1,37 @@
-﻿
+﻿tradition_not_yet_implemented_parameters = {
+	category = regional
+
+	is_shown = {
+		always = no
+	}
+    can_pick = {
+		always = no
+    }
+	
+	parameters = {
+        paranoid_trait_more_common = yes
+        deceitful_trait_more_common = yes
+        trusting_trait_more_common = yes
+        impatient_trait_more_common = yes
+        gluttonous_trait_more_common = yes
+        forgiving_trait_more_common = yes
+        gregarious_trait_more_common = yes
+        chaste_trait_more_common = yes
+        bossy_trait_more_common = yes
+        brave_trait_more_common = yes
+        sadistic_trait_more_common = yes
+        diligent_trait_more_common = yes
+        craven_trait_more_common = yes
+        lazy_trait_more_common = yes
+        wrathful_trait_more_common = yes
+        greedy_trait_more_common = yes
+        curious_trait_more_common = yes
+        charming_trait_less_common = yes
+        bossy_trait_less_common = yes
+        curious_trait_less_common = yes
+	}
+	
+	ai_will_do = {
+		value = 0
+	}
+}

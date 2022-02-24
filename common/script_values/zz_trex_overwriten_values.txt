@@ -100,7 +100,7 @@ battle_winner_piety_gain = {
 					}
 				}
                 culture = {
-                    has_cultural_parameter = more_prestige_from_battles
+                    has_cultural_parameter = piety_from_all_battles
                 }
 			}
 		}

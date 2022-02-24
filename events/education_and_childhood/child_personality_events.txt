@@ -2673,29 +2673,29 @@ child_personality.0010 = {
 					has_trait = paranoid
 				}
 			}
-			modifier = {
-				add = 5
-				trex_can_get_more_common_trait_trigger = {
-					TRAIT = ambitious
-					OPPOSITE = content
-				}
+		}
+		modifier = {
+			add = 5
+			trex_can_get_more_common_trait_trigger = {
+				TRAIT = ambitious
+				OPPOSITE = content
 			}
-			modifier = {
-				add = 5
-				trex_can_get_more_common_trait_trigger = {
-					TRAIT = sadistic
-					OPPOSITE = compassionate
-				}
-				NOT = {
-					has_trait = callous
-				}
+		}
+		modifier = {
+			add = 5
+			trex_can_get_more_common_trait_trigger = {
+				TRAIT = sadistic
+				OPPOSITE = compassionate
 			}
-			modifier = {
-				add = 5
-				trex_can_get_more_common_trait_trigger = {
-					TRAIT = parnoid
-					OPPOSITE = trusting
-				}
+			NOT = {
+				has_trait = callous
+			}
+		}
+		modifier = {
+			add = 5
+			trex_can_get_more_common_trait_trigger = {
+				TRAIT = paranoid
+				OPPOSITE = trusting
 			}
 		}
 	}
@@ -3103,26 +3103,26 @@ child_personality.0012 = {
 					has_trait = gluttonous
 				}
 			}
-			modifier = {
-				add = 5
-				trex_can_get_more_common_trait_trigger = {
-					TRAIT = impatient
-					OPPOSITE = patient
-				}
+		}
+		modifier = {
+			add = 5
+			trex_can_get_more_common_trait_trigger = {
+				TRAIT = impatient
+				OPPOSITE = patient
 			}
-			modifier = {
-				add = 5
-				trex_can_get_more_common_trait_trigger = {
-					TRAIT = shy
-					OPPOSITE = gregarious
-				}
+		}
+		modifier = {
+			add = 5
+			trex_can_get_more_common_trait_trigger = {
+				TRAIT = shy
+				OPPOSITE = gregarious
 			}
-			modifier = {
-				add = 5
-				trex_can_get_more_common_trait_trigger = {
-					TRAIT = gluttonous
-					OPPOSITE = temperate
-				}
+		}
+		modifier = {
+			add = 5
+			trex_can_get_more_common_trait_trigger = {
+				TRAIT = gluttonous
+				OPPOSITE = temperate
 			}
 		}
 	}

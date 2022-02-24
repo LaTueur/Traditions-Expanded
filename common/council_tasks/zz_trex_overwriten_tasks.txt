@@ -1,5 +1,4 @@
-
-task_fabricate_claim = {
+﻿task_fabricate_claim = {
 	position = councillor_court_chaplain
 
 	task_type = task_type_county
