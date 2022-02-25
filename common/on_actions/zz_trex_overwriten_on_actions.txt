@@ -1,7 +1,5 @@
 ﻿on_tradition_added = {
     effect = {
-        save_scope_as = changing_culture
-        set_variable = { name = added_tradition value = scope:tradition }
 		every_player = {
 			limit = {
 				culture = root
@@ -21,8 +19,6 @@
 }
 on_tradition_removed = {
     effect = {
-        save_scope_as = changing_culture
-        set_variable = { name = removed_tradition value = scope:tradition }
 		every_player = {
 			limit = {
 				culture = root

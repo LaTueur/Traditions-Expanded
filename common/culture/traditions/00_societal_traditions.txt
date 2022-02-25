@@ -1980,7 +1980,7 @@ tradition_charitable = {
 	}
 	can_pick = {
 		custom_tooltip = {
-			text = tradition_dog_eat_dog
+			text = cannot_have_tradition_dog_eat_dog
 			NOT = { any_in_list = { list = traits this = flag:tradition_dog_eat_dog } }
 		}
 	}

@@ -1,5 +1,5 @@
 ﻿l_english:
  culture_notification.0010.t:0 "Tradition Forsaken"
- culture_notification.0010.desc:1 "The [this_player.GetCulture.GetNameNoTooltip] Culture has forsaken the [Localize(Concatenate(this_player.GetCulture.GetFlagName('removed_tradition'),'_name'))] tradition"
+ culture_notification.0010.desc:1 "The [this_player.GetCulture.GetNameNoTooltip] Culture has forsaken the [Localize(Concatenate(SCOPE.GetFlagName('tradition'),'_name'))] tradition"
  culture_notification.0011.t:1 "Tradition Embraced"
- culture_notification.0011.desc:1 "The [this_player.GetCulture.GetNameNoTooltip] Culture has embraced the [Localize(Concatenate(this_player.GetCulture.GetFlagName('added_tradition'),'_name'))] tradition"
+ culture_notification.0011.desc:1 "The [this_player.GetCulture.GetNameNoTooltip] Culture has embraced the [Localize(Concatenate(SCOPE.GetFlagName('tradition'),'_name'))] tradition"
