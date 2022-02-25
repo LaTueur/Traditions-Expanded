@@ -42,3 +42,9 @@ def join_files(path, ending):
 def read_with_removed_comments(path, file):
     file_content = open(os.path.join(path, file)).read()
     return(comment_pattern.sub("", file_content))
+
+def get_names(parsed_file):
+    return map(lambda x: x[0], parsed_file)
+
+def get_names_from_files(path):
+    return get_names(join_files(path, "txt"))
